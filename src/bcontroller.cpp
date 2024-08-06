@@ -10,8 +10,8 @@
 #include <cstdint>
 
 union BytesToFloat {
-    uint8_t bytes[4];
-    float floatValue;
+    uint8_t tBytes[4];
+    float tFloatValue;
 };
 
 
@@ -70,13 +70,13 @@ void BController::deserializeMessage(QByteArray pMessage)
     QByteArray xBytes = pMessage.mid(0, 4);
     QByteArray yBytes = pMessage.mid(4, 8);
 
-    BytesToFloat converter;
+    BytesToFloat tConverter;
 
-    std::memcpy(converter.bytes, xBytes.constData(), 4);
-    mXAxisValue = converter.floatValue;
+    std::memcpy(tConverter.tBytes, xBytes.constData(), 4);
+    mXAxisValue = tConverter.tFloatValue;
 
-    std::memcpy(converter.bytes, yBytes.constData(), 4);
-    mYAxisValue = converter.floatValue;
+    std::memcpy(tConverter.tBytes, yBytes.constData(), 4);
+    mYAxisValue = tConverter.tFloatValue;
 
     setXAxisValue(mXAxisValue);
     setYAxisValue(mYAxisValue);
